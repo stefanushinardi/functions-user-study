@@ -120,10 +120,20 @@ def write_blob(path: str, connection_string: str, param_name: str):
 Add a Azure Blob Storage output binding to a function. The input binding allows you to read blob storage data as input to an Azure Function.
 
 ```python
-@app.read_blob(path="my_containter", connection_string="MyStorageAccount", 
-                    data_type="binary", param_name="blob_input")
+@app.write_blob(path="my_containter", connection_string="MyStorageAccount", 
+                    data_type="binary", param_name="blob_output")
 @app.route('/read_blob', methods=['GET'],
             auth_level="anonymous", param_name="request")
-def blob_handler(request, blob_input):
+def blob_handler(request, blob_output):
     pass
 ```
+
+Parameters:
+
+* __str path__ : Path to the container to monitor in Azure Blob Storage. May be a blob name pattern.
+
+* __str connection_string__ : The name of an app setting that contains the Storage connection string to use for this binding. If the app setting name begins with "AzureWebJobs", you can specify only the remainder of the name here. For example, if you set connection to "MyStorage", the Functions runtime looks for an app setting that is named "AzureWebJobsMyStorage." If you leave connection empty, the Functions runtime uses the default Storage connection string in the app setting that is named AzureWebJobsStorage.
+
+* __str data_type__ : data_type specifies the underlying data type. Possible values are string, binary, or stream
+
+* __str param_name__ : The name of the variable that represents the blob in function code
