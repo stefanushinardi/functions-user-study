@@ -8,7 +8,7 @@ app = func.FunctionsApp("dummy-function-app", AuthLevel="FunctionAppLevelAuth")
 
 
 @app.route(path="/user", methods=["GET"])
-def get_users(req: func.HttpRequest, user_id: str, context):
+def get_users(req: func.HttpRequest, context):
     users: List[User] = UserManager.get_users()
     return func.HttpResponse(users)
 
