@@ -117,7 +117,7 @@ Parameters:
 def write_blob(path: str, connection_string: str, param_name: str):
 ```
 
-Add a Azure Blob Storage output binding to a function. The input binding allows you to read blob storage data as input to an Azure Function.
+Add a Azure Blob Storage output binding to a function. The output binding allows you to qrite data to blob storage.
 
 ```python
 @app.write_blob(path="my_containter", connection_string="MyStorageAccount", 
@@ -137,3 +137,50 @@ Parameters:
 * __str data_type__ : data_type specifies the underlying data type. Possible values are string, binary, or stream
 
 * __str param_name__ : The name of the variable that represents the blob in function code
+
+### Azure Table Input binding
+
+Add a Azure Table Storage input binding to a function. The input binding allows you to read table  data as input to an Azure Function.
+
+```python
+def read_table(table_name: str, connection: str, param_name: str, partition_key=None, row_key=None, filter=None):
+```
+
+Parameters:
+
+* __str table_name__ : The name of the table.
+
+* __str connection__ : The name of an app setting that contains the Storage connection string to use
+for this binding. The setting can be the name of an "AzureWebJobs" prefixed app setting
+or connection string name.
+
+* __str param_name__ : The name of the variable that represents the table or entity in function code.
+
+* __str partition_key__ : The partition key of the table entity to read.
+
+* __str row_key__ : The row key of the table entity to read.
+
+* * __str filter__ : An OData filter expression for table input in JavaScript.
+
+
+### Azure Table output binding
+
+Add a Azure Table Storage output binding to a function. The output binding allows you to write data to Azure Table.
+
+```python
+def write_table(table_name: str, connection: str, param_name: str, partition_key=None, row_key=None):
+```
+
+Parameters:
+
+* __str table_name__ : The name of the table.
+
+* __str connection__ : The name of an app setting that contains the Storage connection string to use
+for this binding. The setting can be the name of an "AzureWebJobs" prefixed app setting
+or connection string name.
+
+* __str param_name__ : The name of the variable that represents the table or entity in function code.
+
+* __str partition_key__ : The partition key of the table entity to read.
+
+* __str row_key__ : The row key of the table entity to read.
